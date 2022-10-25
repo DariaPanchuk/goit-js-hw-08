@@ -8,7 +8,7 @@ const refs = {
 
 const STORAGE_KEY = "userMessage";
 
-const formData = {};
+let formData = {};
 
 saveData();
 
@@ -31,8 +31,9 @@ function onFormSubmit(event) {
 function saveData() {
     const savedFormData = localStorage.getItem(STORAGE_KEY);
     const parsedFormData = JSON.parse(savedFormData);
-    if (savedFormData) {
-        refs.input.value = parsedFormData.email;
-        refs.textarea.value = parsedFormData.message;
-    }
-}
+    if (parsedFormData) {
+        formData = parsedFormData;
+        refs.input.value = formData.email || "";
+        refs.textarea.value = formData.message || "";
+    };
+};
